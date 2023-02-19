@@ -4,7 +4,7 @@
   "description": "this is the moview review web app.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "Abhishek Rawat",
   "license": "ISC",

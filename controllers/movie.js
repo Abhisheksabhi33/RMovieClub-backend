@@ -539,6 +539,5 @@ exports.searchPublicMovies = async (req, res) => {
     };
 
     const results = await Promise.all(movies.map(mapMovies));
-
     res.json({results});
 };

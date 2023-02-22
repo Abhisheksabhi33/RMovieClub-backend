@@ -17,29 +17,34 @@ exports.create = async (req, res) => {
   await newUser.save();
 
   // generate 6 digit otp
-  let OTP = generateOTP();
+  // let OTP = generateOTP();
 
-  // store otp inside our db
-  const newEmailVerificationToken = new EmailVerificationToken({
-    owner: newUser._id,
-    token: OTP,
-  });
+  // // store otp inside our db
+  // const newEmailVerificationToken = new EmailVerificationToken({
+  //   owner: newUser._id,
+  //   token: OTP,
+  // });
 
-  await newEmailVerificationToken.save();
+  // await newEmailVerificationToken.save();
 
   // send that otp to our user
 
-  var transport = generateMailTransporter();
+  // var transport = generateMailTransporter();
 
-  transport.sendMail({
-    from: "verification@reviewapp.com",
-    to: newUser.email,
-    subject: "Email Verification",
-    html: `
-      <p>You verification OTP</p>
-      <h1>${OTP}</h1>
-    `,
-  });
+  // transport.sendMail({
+  //   from: "verification@reviewapp.com",
+  //   to: newUser.email,
+  //   subject: "Email Verification",
+  //   html: `
+  //     <p>You verification OTP</p>
+  //     <h1>${OTP}</h1>
+  //   `,
+  // });
+
+  // update isVerified to true
+  newUser.isVerified = true;
+  await newUser.save();
+  
 
   res.status(201).json({
     user: {
